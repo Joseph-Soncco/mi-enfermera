@@ -547,13 +547,13 @@
 
 <!-- ══════ AUDIOS OCULTOS ══════ -->
 <audio id="audio-gallery" preload="auto">
-  <source src="Los Auténticos Decadentes-Loco.mpeg" type="audio/mpeg">
+  <source src="Los Auténticos Decadentes-Loco.mp3" type="audio/mpeg">
 </audio>
 <audio id="audio-frases" preload="auto">
-  <source src="Leo Dan-Pídeme la Luna.mpeg" type="audio/mpeg">
+  <source src="Leo Dan-Pídeme la Luna.mp3" type="audio/mpeg">
 </audio>
 <audio id="audio-final" preload="auto">
-  <source src="Amor.mpeg" type="audio/mpeg">
+  <source src="Amor.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -803,13 +803,13 @@ buildPips();
 buildParticles();
 initAudios();
 
-// Ocultar aviso después de 4 segundos o al primer click
+// Ocultar aviso después de 5 segundos
 setTimeout(() => {
   const av = document.getElementById('avisoMusica');
   if (av) { av.style.opacity = '0'; setTimeout(() => av.remove(), 600); }
-}, 4000);
+}, 5000);
 
-// Desbloquear audio en celular al primer toque
+// Desbloquear audio al primer toque (requerido por navegadores móviles)
 let audioDesbloqueado = false;
 document.addEventListener('touchstart', desbloquearAudio, { once: true });
 document.addEventListener('click', desbloquearAudio, { once: true });
@@ -817,7 +817,6 @@ document.addEventListener('click', desbloquearAudio, { once: true });
 function desbloquearAudio() {
   if (audioDesbloqueado) return;
   audioDesbloqueado = true;
-  // Reproducir y pausar inmediatamente para desbloquear el contexto de audio
   Object.values(audios).forEach(a => {
     a.play().then(() => { if (currentScreen === 0) a.pause(); }).catch(() => {});
   });
